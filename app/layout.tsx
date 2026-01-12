@@ -1,14 +1,13 @@
 import { type Metadata } from 'next'
+import Link from 'next/link'
 import {
   ClerkProvider,
-  SignInButton,
-  SignUpButton,
   SignedIn,
-  SignedOut,
   UserButton,
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import {ApplicationRoutes} from "@/app/enums/ApplicationRoutes";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,11 +33,31 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <header className="flex justify-end items-center p-4 gap-4">
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
+      <header className="flex justify-between items-center p-4 border-b">
+        <nav className="flex gap-4">
+          <SignedIn>
+            <Link href={ApplicationRoutes.JOURNAL} className="hover:underline">
+              Journal
+            </Link>
+            <Link href={ApplicationRoutes.DASHBOARD} className="hover:underline">
+              Dashboard
+            </Link>
+            <Link href={ApplicationRoutes.ACCOUNT} className="hover:underline">
+              Account
+            </Link>
+            <Link href={ApplicationRoutes.PLANS} className="hover:underline">
+              Plans
+            </Link>
+          </SignedIn>
+        </nav>
+
+        <div className="flex items-center gap-4">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
       </header>
+
       {children}
       </body>
       </html>

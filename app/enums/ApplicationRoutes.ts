@@ -3,5 +3,5 @@ export enum ApplicationRoutes {
   ACCOUNT = '/account',
   JOURNAL = '/journal',
   DASHBOARD = '/dashboard',
-  PRICING = '/pricing',
+  PLANS = '/plans',
 }
