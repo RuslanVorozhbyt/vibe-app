@@ -2,21 +2,14 @@
 
 import { useUser } from '@clerk/nextjs'
 import { useEffect, useState } from 'react'
-
-interface JournalRecord {
-  id: number
-  mood: string
-  stress_level: number
-  summary: string
-  advice: string
-  created_at: string
-}
+import {ApplicationApiRoutes} from "@/app/enums/ApplicationApiRoutes";
+import {ExtendedJournalRecord} from "@/app/types/JournalRecord";
 
 const PAGE_SIZE = 5
 
 export default function Dashboard() {
   const { user, isLoaded } = useUser()
-  const [records, setRecords] = useState<JournalRecord[]>([])
+  const [records, setRecords] = useState<ExtendedJournalRecord[]>([])
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
@@ -28,7 +21,7 @@ export default function Dashboard() {
       setLoading(true)
       try {
         const res = await fetch(
-          `/api/journals?userId=${user.id}&page=${page}&pageSize=${PAGE_SIZE}`
+          `${ApplicationApiRoutes.JOURNALS}?userId=${user.id}&page=${page}&pageSize=${PAGE_SIZE}`
         )
         const data = await res.json()
 

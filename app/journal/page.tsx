@@ -9,9 +9,9 @@ import { ApplicationApiRoutes } from '@/app/enums/ApplicationApiRoutes'
 
 export default function Journal() {
   const { user, isLoaded } = useUser()
-  const [textInput, setTextInput] = useState('') // <- new state for text area
+  const [textInput, setTextInput] = useState('')
 
-  const { object, submit, isLoading } = useObject({
+  const { object, submit, isLoading, error } = useObject({
     api: ApplicationApiRoutes.ANALYZE,
     schema: journalSchema,
   })
@@ -86,6 +86,9 @@ export default function Journal() {
       >
         {isLoading ? 'Analyzing...' : 'Analyze Journal'}
       </button>
+      {error && (
+        <span className="block mt-4 text-red-500">{error.message}</span>
+      )}
 
       <div className="mt-6 space-y-4">
         {object?.mood && <p><strong>Mood:</strong> {object.mood}</p>}

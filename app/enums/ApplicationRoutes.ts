@@ -4,4 +4,6 @@ export enum ApplicationRoutes {
   JOURNAL = '/journal',
   DASHBOARD = '/dashboard',
   PLANS = '/plans',
+  PRO_DASHBOARD = '/pro-dashboard',
+  SUCCESS = '/success',
 }

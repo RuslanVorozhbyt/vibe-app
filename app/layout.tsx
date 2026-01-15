@@ -42,6 +42,9 @@ export default function RootLayout({
             <Link href={ApplicationRoutes.DASHBOARD} className="hover:underline">
               Dashboard
             </Link>
+            <Link href={ApplicationRoutes.PRO_DASHBOARD} className="hover:underline">
+              Pro Dashboard
+            </Link>
             <Link href={ApplicationRoutes.ACCOUNT} className="hover:underline">
               Account
             </Link>

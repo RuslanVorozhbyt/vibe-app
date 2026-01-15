@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import {StripePlans} from "@/app/enums/StripePlans";
+import {ApplicationApiRoutes} from "@/app/enums/ApplicationApiRoutes";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -13,7 +14,7 @@ export default function Plans () {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/create-checkout-session', {
+      const res = await fetch(ApplicationApiRoutes.STRIPE_CHECKOUT_SESSION, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ priceId }),
@@ -33,7 +34,6 @@ export default function Plans () {
       setLoading(false)
     }
   }
-
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
